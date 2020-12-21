@@ -3,11 +3,16 @@ import java.util.Set;
 
 public class Third {
     public static void main(String[] args) {
+        System.out.println(solutions(1,0,-1));
         System.out.println(findZip("all zip files are compressed"));
         System.out.println(checkPerfect(28));
         System.out.println(flipEndChars("Cat, dog, and mouse."));
         System.out.println(isValidHexCode("CD5C5C"));
         System.out.println(same(new int[]{1, 5, 9},new int[]{2, 2, 2,3,4,4}));
+        System.out.println(isKaprekar(297));
+        System.out.println(longestZero("0000111100000000111"));
+        System.out.println(nextPrime(15));
+        System.out.println(rightTriangle(5,3,4));
     }
 
     public static int solutions(int a,int b,int c){
@@ -95,5 +100,79 @@ public class Third {
         }
         if (a1.size()==b1.size()){return true;}else{return false;}
     }
+
+    public static boolean isKaprekar(int num) {
+        String square = Integer.toString((int) Math.pow(num, 2));
+        int length = square.length();
+
+        if (length == 1) {
+            return Integer.parseInt(square) == num;
+        }
+
+        if (length == 2) {
+            return (int) square.charAt(0) + (int) square.charAt(1) == num;
+        }
+
+        int lastPart = Integer.parseInt(square.substring(Math.round((length - 1) / 2), length));
+        int firstPart = Integer.parseInt(square.substring(0, Math.round((length - 1) / 2)));
+
+        return firstPart + lastPart == num;
+    }
+
+    public static String longestZero(String str) {
+        String[] zeros = str.split("1+");
+        double max = -100;
+        int imax = 0;
+
+        for (int i = 0; i < zeros.length; i++) {
+            int length = zeros[i].length();
+
+            if (length > max) {
+                max = length;
+                imax = i;
+            }
+        }
+
+        return zeros[imax];
+    }
+
+    public static int nextPrime(int num) {
+        boolean isArgumentPrime = true;
+
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) {
+                isArgumentPrime = false;
+                break;
+            }
+        }
+
+        if (isArgumentPrime) return num;
+
+        int result = 0;
+
+        for (int i = num + 1; i < Double.POSITIVE_INFINITY; i++) {
+            boolean isPrime = true;
+
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                result = i;
+                break;
+            }
+        }
+
+        return result;
+    }
+
+    public static boolean rightTriangle(int a, int b, int c) {
+        return Math.pow(a, 2) + Math.pow(b, 2) == Math.pow(c, 2) || Math.pow(b, 2) + Math.pow(c, 2) == Math.pow(a, 2) || Math.pow(c, 2) + Math.pow(a, 2) == Math.pow(b, 2);
+    }
+
+
 
 }

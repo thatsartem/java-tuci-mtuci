@@ -206,7 +206,7 @@ public class Fourth {
         return false;
     }
 
-    public static int countUniqueBooks(String str, char c) {
+    public static int countUniqueBooks(String str, char c)  {
         Map<Character, Integer> values = new HashMap<>();
         boolean start = true;
 

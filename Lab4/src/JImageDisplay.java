@@ -4,11 +4,6 @@ import java.awt.image.BufferedImage;
 public class JImageDisplay extends javax.swing.JComponent{
     private BufferedImage image;
     public JImageDisplay(int w,int h){
-        if (w <= 0)
-        throw new IllegalArgumentException("w must be > 0; got " + w);
-
-        if (h <= 0)
-            throw new IllegalArgumentException("h must be > 0; got " + h);
 
         image = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
         Dimension dimension = new Dimension(w, h);
